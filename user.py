@@ -147,13 +147,7 @@ def validate_password_rule1():
 
 def main():
     """
-        Description:
-                Runs a validation sequence for first name, last name, email, mobile number, and password. 
-                Each validation step must pass before moving to the next.
-        Parameter:
-                None. Calls validation functions sequentially.
-        Return:
-                None. Prints validation results.
+        Main function to excecute validation function in a sequence.
     """
     try:
         if valid_first_name():
