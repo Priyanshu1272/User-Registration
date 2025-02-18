@@ -145,18 +145,51 @@ def validate_password_rule1():
         print(f"Unexpected error: {e}")
         return False
 
+def validate_password_rule2():
+    """
+        Description:
+                Validates the password entered by the user.
+                The password must contain atleast one uppercase letter.
+                The password must be at least 8 characters long.
+        Parameter:
+                None. Takes user input directly.
+        Return:
+                bool: Returns True if the password meets the required criteria, False otherwise.
+    """
+    try:
+        pattern = r"^(?=.*[A-Z]).{8,}$"
+        password = input("Enter your password: ").strip()
+        if not password:
+            raise ValueError("Password cannot be empty.")
+        if re.match(pattern, password):
+            print("It is a Valid Password.")
+            return True
+        else:
+            print("It is an Invalid Password. It must be at least 8 characters long.")
+            return False
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return False
+
+
 def main():
     """
-        Main function to excecute validation function in a sequence.
+        Main function to execute validation functions in a sequence.
     """
     try:
         if valid_first_name():
             if valid_last_name():
                 if valid_email():
                     if valid_mobile():
-                        validate_password_rule1()
+                        if validate_password_rule1():
+                            validate_password_rule2()
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
 
 
 
