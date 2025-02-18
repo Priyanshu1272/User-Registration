@@ -175,6 +175,36 @@ def validate_password_rule2():
         print(f"Unexpected error: {e}")
         return False
 
+def validate_password_rule3():
+    """
+        Description:
+                Validates the password entered by the user.
+                The password must contain atleast 1 numeric number in password.
+                The password must contain atleast one uppercase letter.
+                The password must be at least 8 characters long.
+        Parameter:
+                None. Takes user input directly.
+        Return:
+                bool: Returns True if the password meets the required criteria, False otherwise.
+    """
+    try:
+        pattern = r"^(?=.[A-Z])(?=.\d).{8,}$"
+        password = input("Enter your password: ").strip()
+        if not password:
+            raise ValueError("Password cannot be empty.")
+        if re.match(pattern, password):
+            print("It is a Valid Password.")
+            return True
+        else:
+            print("It is an Invalid Password. It must be at least 8 characters long and contain atleast one uppercase letter and one numeric number.")
+            return False
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return False
 
 def main():
     """
@@ -186,10 +216,10 @@ def main():
                 if valid_email():
                     if valid_mobile():
                         if validate_password_rule1():
-                            validate_password_rule2()
+                            if validate_password_rule2():
+                                validate_password_rule3()
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-
 
 
 
