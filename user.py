@@ -165,7 +165,7 @@ def validate_password_rule2():
             print("It is a Valid Password.")
             return True
         else:
-            print("It is an Invalid Password. It must be at least 8 characters long.")
+            print("It is an Invalid Password. It must be at least 8 characters long and contain atleast one uppercase letter.")
             return False
 
     except ValueError as ve:
