@@ -188,7 +188,7 @@ def validate_password_rule3():
                 bool: Returns True if the password meets the required criteria, False otherwise.
     """
     try:
-        pattern = r"^(?=.[A-Z])(?=.\d).{8,}$"
+        pattern = r"^(?=.*[A-Z])(?=.*\d).{8,}$"
         password = input("Enter your password: ").strip()
         if not password:
             raise ValueError("Password cannot be empty.")
@@ -206,6 +206,7 @@ def validate_password_rule3():
         print(f"Unexpected error: {e}")
         return False
 
+
 def main():
     """
         Main function to execute validation functions in a sequence.
@@ -218,9 +219,9 @@ def main():
                         if validate_password_rule1():
                             if validate_password_rule2():
                                 validate_password_rule3()
+                                  
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-
 
 
 if __name__ == "__main__":
