@@ -188,7 +188,7 @@ def validate_password_rule3():
                 bool: Returns True if the password meets the required criteria, False otherwise.
     """
     try:
-        pattern = r"^(?=.[A-Z])(?=.\d).{8,}$"
+        pattern = r"^(?=.*[A-Z])(?=.*\d).{8,}$"
         password = input("Enter your password: ").strip()
         if not password:
             raise ValueError("Password cannot be empty.")
@@ -206,6 +206,41 @@ def validate_password_rule3():
         print(f"Unexpected error: {e}")
         return False
 
+
+def validate_password_rule4():
+    """
+        Description:
+                Validates the password entered by the user.
+                The password must contain exactly one special character.
+                The password must contain atleast 1 numeric number in password.
+                The password must contain atleast one uppercase letter.
+                The password must be at least 8 characters long.
+        Parameter:
+                None. Takes user input directly.
+        Return:
+                bool: Returns True if the password meets the required criteria, False otherwise.
+    """
+    try:
+        
+        pattern = r"^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"
+        password = input("Enter your password: ").strip()
+        if not password:
+            raise ValueError("Password cannot be empty.")
+        if re.match(pattern, password):
+            print("It is a Valid Password.")
+            return True
+        else:
+            print("It is an Invalid Password.It should have exactly one special character. It must be at least 8 characters long and contain atleast one uppercase letter and one numeric number.")
+            return False
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return False
+
+
 def main():
     """
         Main function to execute validation functions in a sequence.
@@ -217,14 +252,13 @@ def main():
                     if valid_mobile():
                         if validate_password_rule1():
                             if validate_password_rule2():
-                                validate_password_rule3()
+                                if validate_password_rule3():
+                                    validate_password_rule4()
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
 
-
 if __name__ == "__main__":
     main()
-
 
 
